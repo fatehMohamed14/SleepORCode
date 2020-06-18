@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~src/sass/_customize-bootstrap.scss';
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import "~src/sass/_mixins.scss";
+@import "~src/sass/_variables.scss";
+
+.dark {
+  @include darkMode;
+}
+
+.light {
+  @include whiteMode;
+}
+
+.navbar {
+  background-color: var(--bg);
+  box-shadow: 3px 3px 3px $primary;
+}
+
+.theme-toggle {
+  color: var(--text-color);
+  font-size: $big-size;
+}

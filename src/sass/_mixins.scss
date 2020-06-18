@@ -1,0 +1,9 @@
+@mixin darkMode {
+  --bg: #000;
+  --text-color: #fff;
+}
+
+@mixin whiteMode {
+  --bg: #fff;
+  --text-color: #000;
+}
