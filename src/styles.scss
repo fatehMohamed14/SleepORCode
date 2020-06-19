@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
-@import '~src/sass/_customize-bootstrap.scss';
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap");
+@import "~src/sass/_customize-bootstrap.scss";
+@import "../node_modules/bootstrap/scss/bootstrap";
 @import "~src/sass/_mixins.scss";
 @import "~src/sass/_variables.scss";
 
 body {
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 
 .dark {
@@ -30,6 +30,11 @@ body {
 .card {
   background-color: var(--card-bg);
   max-height: 500px;
+  border: none;
+  &:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.11), 0 10px 20px var(--primary);
+  }
 }
 
 .card-body {
@@ -42,5 +47,6 @@ body {
 
 .card-title {
   min-height: 70px;
+  color: $primary;
 }
 /********* end card ***********/
