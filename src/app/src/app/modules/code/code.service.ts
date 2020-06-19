@@ -6,14 +6,20 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CodeService extends ApiService {
-
+  topArticlesEndpoint = '/v2/top-headlines';
   constructor(public http: HttpClient) {
     super(http, 'newsapi', '/v2/everything');
   }
 
-  codeArticles(q: string) {
+  codeArticles(q?: string) {
+      const params = new HttpParams()
+        .set('q', q);
+      return this.get(params);
+  }
+
+  getTopArticles() {
     const params = new HttpParams()
-      .set('q', q);
-    return this.get(params);
+      .set('category', 'technology');
+    return this.get(params, this.topArticlesEndpoint);
   }
 }

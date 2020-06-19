@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CodeService } from '../code.service';
 import { Observable } from 'rxjs';
-import { map, finalize, distinctUntilChanged, debounceTime, switchMap, startWith, filter } from 'rxjs/operators';
+import { map, finalize, distinctUntilChanged, debounceTime, switchMap, startWith, filter, tap, share } from 'rxjs/operators';
 import { Article } from '../models/article.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -14,12 +14,14 @@ export class CodeArticlesListComponent implements OnInit {
   codeArticles$: Observable<Article[]>;
   loading: boolean;
   form: FormGroup;
+  isSearching = false;
   constructor(private codeService: CodeService, private fb: FormBuilder) {
     this.form = this.fb.group({
       query: ['']
     });
 
     this.form.get('query').valueChanges.pipe(
+      tap(() => this.isSearching = true),
       filter((trm) => trm.trim().length > 3),
       debounceTime(400),
       distinctUntilChanged(),
@@ -30,15 +32,29 @@ export class CodeArticlesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.codeArticles$ = this.getArticles('javascript');
+    this.codeArticles$ = this.getHeadings();
+  }
+
+  getHeadings = () => {
+    return this.codeService.getTopArticles().pipe(
+      share(),
+      map((res: any) => res.articles),
+      finalize(() => { this.loading = false; this.isSearching = false; })
+    );
   }
 
   getArticles = (query: string): Observable<Article[]> => {
     this.loading = true;
-    return  this.codeService.codeArticles(query).pipe(
+    return this.codeService.codeArticles(query).pipe(
+      share(),
       map((res: any) => res.articles),
       finalize(() => this.loading = false)
     );
+  }
+
+  cancelSearch = () => {
+    this.codeArticles$ = this.getHeadings();
+    this.form.get('query').patchValue('');
   }
 
 }

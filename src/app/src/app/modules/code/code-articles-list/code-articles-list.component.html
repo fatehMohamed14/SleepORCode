@@ -13,7 +13,17 @@
       </div>
     </div>
   </form>
-  <h1 class="highlited1 text-center mb-3">🧐 Search Results</h1>
+  <div class="text-center m-5" *ngIf="isSearching && (codeArticles$ | async)?.length > 0">
+    <h1 class="highlited1 mb-3">🧐 Search Results</h1>
+    <button class="btn btn-outline-primary" (click)="cancelSearch()">cancel search 💔</button>
+  </div>
+   <div class="text-center m-5" *ngIf="isSearching && (codeArticles$ | async)?.length < 1">
+    <button class="btn btn-outline-primary" (click)="cancelSearch()">Go Back 💔</button>
+  </div>
+  <div class="text-center m-5" *ngIf="!isSearching && (codeArticles$ | async)?.length > 0">
+    <h1 class="highlited1 mb-3">❤️ Technology Top Headings</h1>
+  </div>
+
   <div class="row">
     <div class="col-md-3" *ngFor="let article of codeArticles$ | async">
       <div class="card mb-5">
@@ -34,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="(codeArticles$ | async)?.length < 1" class="mt-5">
+  <div *ngIf="!loading && (codeArticles$ | async)?.length < 1" class="mt-5">
     <h1 class="highlited1 text-center">Oh noes, nothing found 😩</h1>
   </div>
 </div>

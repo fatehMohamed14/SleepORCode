@@ -16,7 +16,10 @@ export class ApiService {
     }
   }
 
-  get(params: HttpParams) {
+  get(params: HttpParams, customEndPoint?: string) {
+    if (customEndPoint) {
+      this.url = environment[this.apiProvider] + customEndPoint;
+    }
     return this.http.get(this.url, {params, headers: this.header});
   }
 }
