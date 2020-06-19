@@ -24,17 +24,18 @@ body {
 .theme-toggle {
   color: var(--text-color);
   font-size: $big-size;
+  cursor: pointer;
 }
 
 /********* card ***********/
 .card {
   background-color: var(--card-bg);
-  max-height: 510px;
+  min-height: 510px;
   border: none;
   &:hover {
     transform: translateY(-5px) scale(1.005) translateZ(0);
     transition-duration: 0.5s;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.11), 0 10px 20px var(--primary);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.11), 0 10px 15px var(--primary);
   }
 }
 

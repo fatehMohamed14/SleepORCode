@@ -6,12 +6,19 @@ export enum Theme {
   light = 'light'
 }
 
+export enum DevState {
+  code = 'code',
+  sleep = 'sleep'
+}
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
   private theme: BehaviorSubject<Theme> = new BehaviorSubject(Theme.dark);
-
+  private devState: BehaviorSubject<DevState> = new BehaviorSubject(DevState.code);
   constructor() { }
 
   get theme$() {
@@ -24,5 +31,18 @@ export class ThemeService {
     } else {
       this.theme.next(Theme.dark);
     }
+  }
+
+  get devState$() {
+    return this.devState.asObservable();
+  }
+
+  toggleDevState = () => {
+    if (this.devState.value === DevState.code) {
+      this.devState.next(DevState.sleep);
+    } else {
+      this.devState.next(DevState.code);
+    }
+    return this.devState;
   }
 }

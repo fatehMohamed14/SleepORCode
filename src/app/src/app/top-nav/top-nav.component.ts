@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService, Theme } from '../core/theme.service';
+import { ThemeService, Theme, DevState } from '../core/theme.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -9,17 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit {
-  mode$: Observable<Theme>;
+  devState$: Observable<DevState>;
   constructor(private themeService: ThemeService, private router: Router) {
-    this.mode$ = this.themeService.theme$;
+    this.devState$ = this.themeService.devState$;
   }
 
   ngOnInit(): void {
   }
 
-  toggle(event) {
-    this.themeService.toggleTheme();
-    this.router.navigate(['/code']);
+  toggle() {
+    const newState = this.themeService.toggleDevState();
+    if (newState.value === DevState.sleep) {
+      this.router.navigate(['/sleep']);
+    } else {
+      this.router.navigate(['/code']);
+    }
   }
 
 }

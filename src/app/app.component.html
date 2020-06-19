@@ -1,12 +1,18 @@
-<div class="app"  [ngClass]="theme$ | async">
-<app-top-nav></app-top-nav>
-<div class="container-fluid custom-container">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <router-outlet></router-outlet>
+<div class="app" [ngClass]="theme$ | async">
+  <app-top-nav></app-top-nav>
+  <div class="container-fluid custom-container">
+    <div class="row justify-content-end">
+      <div class="col-4 theme-toggle  m-3" (click)="toggle($event)">
+        <div class="float-right">
+          {{ (theme$ | async) === "dark" ? "🌑 Night" : "☀️ Light" }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <router-outlet> </router-outlet>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-

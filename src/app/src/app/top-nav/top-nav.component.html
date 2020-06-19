@@ -1,10 +1,10 @@
 <nav class="navbar static-top">
   <span class="nav-bar-brand mb-0 h3">
     <a href="#" class="navbar-brand">
-      <img src="./assets/img/logo.png" class="d-block img-fluid" alt="">
+      <img src="./assets/img/logo.png" class="d-block img-fluid" alt="" />
     </a>
   </span>
-  <div class="theme-toggle float-right" (click)="toggle($event)">
-    {{ (mode$ | async) === 'dark' ? '➡️ Code 👨‍💻' : '➡️ Sleep 🛌'}}
+  <div class="theme-toggle float-right" (click)="toggle()">
+    {{ (devState$ | async) === "sleep" ? "➡️ Code 👨‍💻" : "➡️ Sleep 🛌" }}
   </div>
 </nav>
