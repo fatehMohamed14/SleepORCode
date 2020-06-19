@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CodeService } from '../code.service';
 import { Observable } from 'rxjs';
-import { map, finalize, distinctUntilChanged, debounceTime, switchMap, startWith, filter, tap, share } from 'rxjs/operators';
+import { map, finalize, distinctUntilChanged, debounceTime, switchMap, startWith, filter, tap, share, delay } from 'rxjs/operators';
 import { Article } from '../models/article.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -36,6 +36,7 @@ export class CodeArticlesListComponent implements OnInit {
   }
 
   getHeadings = () => {
+    this.loading = true;
     return this.codeService.getTopArticles().pipe(
       share(),
       map((res: any) => res.articles),
