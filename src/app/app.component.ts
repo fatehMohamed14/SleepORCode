@@ -18,7 +18,6 @@ export class AppComponent {
 
   toggle(event) {
     this.themeService.toggleTheme();
-    this.router.navigate(['/code']);
   }
 
 }
