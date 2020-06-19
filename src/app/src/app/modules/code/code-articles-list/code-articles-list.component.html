@@ -1,21 +1,51 @@
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5" *ngIf="codeArticles$ | async; else isLoading">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <div class="d-flex align-items-center small">
+        <i class="fa fa-search fa-fw text-muted position-absolute pl-3"></i>
+        <input
+          type="search"
+          formControlName="query"
+          class="form-control py-4"
+          placeholder="Search..."
+          style="padding-left: 38px;"
+        />
+      </div>
+    </div>
+  </form>
+  <h1 class="highlited1 text-center mb-3">🧐 Search Results</h1>
   <div class="row">
-    <div class="col-3" *ngFor="let article of codeArticles$ | async">
-      <div class="card mb-3">
+    <div class="col-md-3" *ngFor="let article of codeArticles$ | async">
+      <div class="card mb-5">
         <img
           class="card-img-top article-card-img"
-          src="{{article?.urlToImage}}"
+          src="{{ article?.urlToImage }}"
           onerror="this.src='./assets/img/img-placeholder.jpg'"
           alt="Card image cap"
         />
+
         <div class="card-body">
           <h5 class="card-title">{{ article?.title }}</h5>
           <p class="card-text">
-            {{article?.description.substr(0,100)}}{{'...'}}
+            {{ article?.description?.substr(0, 100) }}{{ "..." }}
           </p>
-          <a href="#" class="btn btn-primary float-right">Go somewhere</a>
+          <a href="#" class="btn btn-primary float-right">More Details ...</a>
         </div>
       </div>
     </div>
   </div>
+  <div *ngIf="(codeArticles$ | async)?.length < 1" class="mt-5">
+    <h1 class="highlited1 text-center">Oh noes, nothing found 😩</h1>
+  </div>
 </div>
+<ng-template #isLoading>
+  <div class="text-center" *ngIf="loading">
+    <div
+      class="spinner-grow text-primary custom-spinner"
+      style="width: 5rem; height: 5rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

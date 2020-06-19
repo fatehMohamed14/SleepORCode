@@ -2,10 +2,12 @@
   --bg: #1D1D1D;
   --text-color: #fff;
   --card-bg: #292929;
+  --container-bg: #212529;
 }
 
 @mixin whiteMode {
   --bg: #fff;
   --text-color: #000;
   --card-bg: #e3e4e8;
+  --container-bg: #fff;
 }
