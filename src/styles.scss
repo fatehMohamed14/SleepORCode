@@ -1,8 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
 @import '~src/sass/_customize-bootstrap.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import "~src/sass/_mixins.scss";
 @import "~src/sass/_variables.scss";
+
+body {
+  font-family: 'Dosis', sans-serif;
+}
 
 .dark {
   @include darkMode;
@@ -21,3 +25,22 @@
   color: var(--text-color);
   font-size: $big-size;
 }
+
+/********* card ***********/
+.card {
+  background-color: var(--card-bg);
+  max-height: 500px;
+}
+
+.card-body {
+  color: var(--text-color);
+}
+
+.card-text {
+  height: 80px;
+}
+
+.card-title {
+  min-height: 70px;
+}
+/********* end card ***********/
