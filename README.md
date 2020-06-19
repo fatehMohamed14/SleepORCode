@@ -1,6 +1,8 @@
 # SleepORcode
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+Sleep || Code, An Angular app that contains the best of everything, best files structure, best patterns ... check while you're not sleeping!
+
+![Screenshot](screenshot.png)
 
 ## Development server
 
