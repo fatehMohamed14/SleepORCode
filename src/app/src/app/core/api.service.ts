@@ -17,9 +17,12 @@ export class ApiService {
   }
 
   get(params: HttpParams, customEndPoint?: string) {
+    let url;
     if (customEndPoint) {
-      this.url = environment[this.apiProvider] + customEndPoint;
+      url = environment[this.apiProvider] + customEndPoint;
+    } else {
+      url = this.url;
     }
-    return this.http.get(this.url, {params, headers: this.header});
+    return this.http.get(url, {params, headers: this.header});
   }
 }
