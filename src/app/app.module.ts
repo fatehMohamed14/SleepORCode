@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './src/app/shared/shared.module';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
-    })
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

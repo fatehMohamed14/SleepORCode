@@ -32,7 +32,8 @@ export class CodeArticlesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.codeArticles$ = this.getHeadings();
+    //this.codeArticles$ = this.getHeadings();
+    this.codeArticles$ = this.getLocalArticles();
   }
 
   getHeadings = () => {
@@ -41,6 +42,15 @@ export class CodeArticlesListComponent implements OnInit {
       share(),
       map((res: any) => res.articles),
       finalize(() => { this.loading = false; this.isSearching = false; })
+    );
+  }
+
+  getLocalArticles  = (): Observable<Article[]> => {
+    this.loading = true;
+    return this.codeService.codeLocalArticles().pipe(
+      share(),
+      map((res: any) => res),
+      finalize(() => this.loading = false)
     );
   }
 

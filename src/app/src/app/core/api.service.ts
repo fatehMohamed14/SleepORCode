@@ -25,4 +25,14 @@ export class ApiService {
     }
     return this.http.get(url, {params, headers: this.header});
   }
+
+  post(data: any, customEndPoint?: string) {
+    let url;
+    if (customEndPoint) {
+      url = environment[this.apiProvider] + customEndPoint;
+    } else {
+      url = this.url;
+    }
+    return this.http.post(url, data, {headers: this.header});
+  }
 }

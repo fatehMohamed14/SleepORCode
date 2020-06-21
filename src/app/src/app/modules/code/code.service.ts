@@ -8,7 +8,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class CodeService extends ApiService {
   topArticlesEndpoint = '/v2/top-headlines';
   constructor(public http: HttpClient) {
-    super(http, 'newsapi', '/v2/everything');
+    super(http, 'local', '/articles/');
+  }
+
+  codeLocalArticles() {
+    const params = new HttpParams();
+    return this.get(params);
   }
 
   codeArticles(q?: string) {
@@ -21,5 +26,9 @@ export class CodeService extends ApiService {
     const params = new HttpParams()
       .set('category', 'technology');
     return this.get(params, this.topArticlesEndpoint);
+  }
+
+  addArticle(fd:FormData) {
+    return this.post(fd);
   }
 }
