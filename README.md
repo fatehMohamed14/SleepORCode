@@ -2,6 +2,8 @@
 
 Sleep || Code, An Angular app that contains the best of everything, best files structure, best patterns ... check while you're not sleeping!
 
+** Using a public api or Django Api (Django rest framework)**
+
 ![Screenshot](screenshot.png)
 
 ## Development server
